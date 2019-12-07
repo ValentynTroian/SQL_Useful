@@ -39,11 +39,10 @@ BEGIN TRY
 
 			          'SELECT '''  + @view_name + ''' as View_Name, 
 						CASE WHEN COUNT(*) = 0 THEN ''' + 'NO DATA''' +
-					        'WHEN COUNT(*) = 1 THEN ''' + 'PASS'''  +
-							'END AS Result, 
+					            'WHEN COUNT(*) = 1 THEN ''' + 'PASS'''  +
+					        'END AS Result, 
 					    NULL as Error_Message, 
 					    GETDATE() as Run_Time 
-
 					    FROM  (SELECT TOP(1) 1 as cnt FROM ' + @view_name + ') s'
 
     EXECUTE sp_executesql @main_query, N'@view_name varchar(255)', @view_name = @view_name
